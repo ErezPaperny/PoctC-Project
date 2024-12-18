@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
+    "build": "npm install",
+    "clean": "cd server && rmdir /s /q node_modules && del package-lock.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
