@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet, Platform,Text } from 'react-native';
 import { DatePicker } from 'antd';
 
 import { HelloWave } from '@/components/HelloWave';
@@ -7,6 +8,15 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    fetch('https://cors-anywhere.herokuapp.com/http://localhost:5000')
+      .then(res => res.text())
+      .then(data => setMessage(data))
+      .catch( a => { console.log(a) });
+  }, []);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -17,7 +27,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        AAAAA
+        <Text>{message}</Text>
         <DatePicker />
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
