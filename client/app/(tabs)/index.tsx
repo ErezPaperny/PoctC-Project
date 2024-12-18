@@ -11,9 +11,9 @@ export default function HomeScreen() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('https://cors-anywhere.herokuapp.com/http://localhost:5000')
+    fetch('http://localhost:5000')
       .then(res => res.text())
-      .then(data => setMessage(data))
+      .then(data => setMessage(JSON.parse(data).message))
       .catch( a => { console.log(a) });
   }, []);
 
