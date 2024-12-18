@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm install && next build",
     "start": "next start",
-    "clean": "cd server && rmdir /s /q node_modules && del package-lock.json && rmdir /s /q .next && del next-env.d.ts",
+    "clean": "rmdir /s /q node_modules && del package-lock.json && rmdir /s /q .next && del next-env.d.ts",
     "lint": "next lint"
   },
   "dependencies": {
