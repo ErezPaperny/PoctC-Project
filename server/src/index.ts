@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", (req: Request, res: Response) => {
-  res.send({message: "Hello, world!"});
+  res.send({message: "Hello, world! This is message from server."});
 });
 
 app.listen(PORT, () => {
