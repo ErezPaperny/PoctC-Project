@@ -1,19 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import Image from "next/image";
-import { DatePicker } from 'antd';
-
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { DatePicker, Button } from 'antd'
+import Link from 'next/link'
 
 export default function Home() {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:5000')
-      .then(res => res.text())
-      .then(data => setMessage(JSON.parse(data).message))
-      .catch( a => { console.log(a) });
-  }, []);
+      .then((res) => res.text())
+      .then((data) => setMessage(JSON.parse(data).message))
+      .catch((a) => {
+        console.log(a)
+      })
+  }, [])
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -28,20 +30,23 @@ export default function Home() {
           data-testid="main-image"
         />
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-        <li className="mb-2"> 
+          <li className="mb-2">
             <DatePicker />
           </li>
-          <li className="mb-2"> 
-            {message}
-          </li>
+          <li className="mb-2">{message}</li>
           <li className="mb-2">
-            Whats going on Erez .... Get started by editing{" "} 
+            Whats going on Erez .... Get started by editing{' '}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>
             .
           </li>
           <li>Save and see your changes instantly.</li>
+          <li>
+            <Button>
+              <Link href="/users">Go to users page</Link>
+            </Button>
+          </li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
@@ -118,5 +123,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  );
+  )
 }
