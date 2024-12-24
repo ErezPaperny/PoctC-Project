@@ -1,21 +1,11 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { DatePicker, Button } from 'antd'
 import Link from 'next/link'
 
-export default function Home() {
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    fetch('http://localhost:5000')
-      .then((res) => res.text())
-      .then((data) => setMessage(JSON.parse(data).message))
-      .catch((a) => {
-        console.log(a)
-      })
-  }, [])
+export default async function Home() {
+  const data = await fetch('http://localhost:5000');
+  const dataText = await data.text();
+  const message = JSON.parse(dataText).message;
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
