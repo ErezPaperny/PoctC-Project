@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
 app.get('/', (req: Request, res: Response) => {
   setTimeout(() => {
     res.send({ message: 'Hello, world! This is message from server.' })
-  }, 3000) 
+  }, 1000) 
 })
 
 app.listen(PORT, () => {
