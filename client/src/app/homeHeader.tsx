@@ -1,14 +1,13 @@
-import { Flex, Image, Typography } from 'antd'
+import { Flex, Image } from 'antd'
 
 export function HomeHeader() {
-  const { Paragraph } = Typography
-
   return (
-    <Flex gap={'100px'}>
-      <Image src={'/next.svg'} alt="logo" width={'180px'} height={'38px'} />
+    <Flex gap={'30px'} align="center" justify="center">
+      <Image src={'/papaBayLogo.svg'} alt="logo" width={'5%'} height={'5%'} />
       <Flex vertical gap={'space-between'}>
-        <Paragraph>Managing your store its easy</Paragraph>
-        <Paragraph>Buying from stores are easiest</Paragraph>
+        Managing your store its easy
+        <br />
+        Buying from stores are easiest
       </Flex>
     </Flex>
   )

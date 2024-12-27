@@ -1,27 +1,33 @@
-import { Button, Layout } from 'antd'
-import { HomeHeader } from './homeHeader';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Button, Flex, Layout } from 'antd'
+import { HomeHeader } from './homeHeader'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export function Home() {
-  const [message, setMessage] = useState('Loading...');
-  useEffect(() => { 
-    fetch('http://localhost:5000').
-      then((data) => data.text()).
-      then((dataText) => setMessage(JSON.parse(dataText).message));
-  });
+  const [message, setMessage] = useState('Loading...')
+  useEffect(() => {
+    fetch('http://localhost:5000')
+      .then((data) => data.text())
+      .then((dataText) => setMessage(JSON.parse(dataText).message))
+  })
 
-  const { Header, Footer, Content } = Layout;
+  const { Header, Footer, Content } = Layout
 
   return (
-    <Layout>
+    <Layout style={{ height: '100vh' }}>
       <Header></Header>
       <Content>
-        <HomeHeader />
-        <h1>{message}</h1>
-        <Button><Link href='./users'>User List</Link></Button>
+        <div style={{ height: '300px' }}>
+          <Flex vertical gap={'space-between'}>
+            <HomeHeader />
+            {message}
+            <Button>
+              <Link href="./users">User List</Link>
+            </Button>
+          </Flex>
+        </div>
       </Content>
-    <Footer>Footer</Footer>
-  </Layout>
+      <Footer>Footer</Footer>
+    </Layout>
   )
 }
