@@ -12,6 +12,9 @@ export function Home() {
   const [accessToken, setAccessToken] = useState()
   const { Header, Footer, Content } = Layout
   const { user, error, isLoading } = useUser()
+  const client_id = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID || ''
+  const client_secret = process.env.NEXT_PUBLIC_AUTH0_CLIENT_SECRET || ''
+  const audience = process.env.NEXT_PUBLIC_AUTH0_AUDIENCE || ''
 
   useEffect(() => {
     const options = {
@@ -20,10 +23,9 @@ export function Home() {
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: new URLSearchParams({
         grant_type: 'client_credentials',
-        client_id: 'rvPQ8gcHJfCedL2R97Ay57oV6A9Ev1FZ',
-        client_secret:
-          'AcWqnxqRZJKYZ5WbOyTAy6H4c9qBCP_CjukHLDjAxY6Q7xRIR2jbWgj8hxvJ_AcP',
-        audience: 'http://localhost:5000',
+        client_id,
+        client_secret,
+        audience,
       }),
     }
 
