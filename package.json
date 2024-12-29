@@ -15,10 +15,11 @@
     "clean_root": "rmdir /s /q node_modules && del package-lock.json",
     "clean_client": "cd client && npm run clean",
     "clean_server": "cd server && npm run clean",
-    "build": " npm run build_root && concurrently \"npm run build_client\" \"npm run build_server\"",
-    "build_root": "npm install",
+    "build": "npm run build_root && concurrently \"npm run build_client\" \"npm run build_server\"",
+    "build_root": "npm install && npm run switchDev",
     "build_client": "cd client && npm run build",
-    "build_server": "cd server && npm run build"
+    "build_server": "cd server && npm run build",
+    "switchDev": "copy ..\\Env\\Dev\\.env.local .\\client"
   },
   "repository": {
     "type": "git",

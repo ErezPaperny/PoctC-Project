@@ -22,7 +22,7 @@ npm run build
 npm run dev
 ```
 
-* Running server and client in runtime mode: 
+* Running server and client in runtime mode:
 
 ```
 npm run start
@@ -33,5 +33,12 @@ npm run start
 ```
 npm run clean
 ```
+
+* Switch to Dev environment:
+
+```
+npm run switchDev
+```
+
 
 
