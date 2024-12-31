@@ -100,7 +100,7 @@ app.get('/users', async (req, res) => {
       data: users,
     })
   } catch (err) {
-    console.error('Error fetching categories:', err)
+    console.error('Error fetching users:', err)
     res.status(500).json({ error: (err as any).message })
   }
 })
