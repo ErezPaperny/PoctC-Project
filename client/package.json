@@ -7,6 +7,7 @@
     "test:watch": "jest --watch",
     "dev": "next dev --turbopack",
     "build": "npm install && next build",
+    "nextBuild": "next build",
     "start": "next start",
     "clean": "rmdir /s /q node_modules && del package-lock.json && rmdir /s /q .next && del next-env.d.ts",
     "lint": "next lint"

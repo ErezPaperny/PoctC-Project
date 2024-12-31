@@ -19,7 +19,7 @@
     "build_root": "npm install && npm run switchDev",
     "build_client": "cd client && npm run build",
     "build_server": "cd server && npm run build",
-    "switchDev": "copy ..\\Env\\Dev\\.env.local .\\client"
+    "switchDev": "copy ..\\Env\\Dev\\.env.local .\\client && copy ..\\Env\\Dev\\.env .\\server"
   },
   "repository": {
     "type": "git",
