@@ -1,6 +1,7 @@
-import { Avatar, Image, Layout, Typography } from 'antd'
+import { Avatar, Image, Layout } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { useUser } from '@auth0/nextjs-auth0/client'
+import { AppHeaderText } from './appHeaderText'
 
 export const AppHeader = () => {
   const { Header } = Layout
@@ -26,20 +27,12 @@ export const AppHeader = () => {
         </div>
         <div style={{ flex: '1 1' }}></div>
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <Typography.Title
-            level={4}
-            style={{
-              color: 'white',
-              textWrap: 'nowrap',
-              alignContent: 'start',
-              textAlign: 'center',
-            }}
-          >
+          <AppHeaderText>
             Hello: {!isLoading && user ? user.name : 'Loading ...'}
-          </Typography.Title>
+          </AppHeaderText>
           <Avatar
             style={{
-              backgroundColor: '#87d068',
+              backgroundColor: 'rgba(255, 255, 255, 0.65)',
             }}
             icon={isLoading || !user ? <UserOutlined /> : undefined}
             src={!isLoading && user ? (user.picture as string) : undefined}
