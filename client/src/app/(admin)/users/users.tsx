@@ -1,30 +1,66 @@
-import { getSession } from '@auth0/nextjs-auth0'
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { Image } from 'antd'
+'use client'
 
-async function _Users() {
-  const session = await getSession();
-  const user = session ? session.user : null;
+import '@ant-design/v5-patch-for-react-19'
+import { Breadcrumb, Layout, Menu } from 'antd'
+import { AppHeader } from '@/components/appHeader'
+
+export const Users = () => {
+  const { Content, Sider } = Layout
 
   return (
-    <div style={{ height: '100vh' }}>
-      <header>Header of Users</header>
-      <main>
-        Main area of the Users:
-        <br />
-        Welcome -
-        <br />
-        {user && (
-          <div>
-            <Image src={user.picture} alt={user.name} />
-            <h2>Name : {user.name}</h2>
-            <p>Email : {user.email}</p>
-          </div>
-        )}
-      </main>
-      <footer>Footer of Users</footer>
-    </div>
+    <Layout>
+      <AppHeader />
+      <Layout>
+        <Sider
+          width={200}
+          style={{
+            background: 'black',
+          }}
+        >
+          <Menu
+            mode="inline"
+            defaultSelectedKeys={['1']}
+            style={{
+              height: '100%',
+              borderRight: 0,
+            }}
+            items={[{key: '1', label: 'Users'},{key: '2', label: 'Categories'},{key: '3', label: 'Stores'}]}
+          />
+        </Sider>
+        <Layout
+          style={{
+            padding: '0 24px 24px',
+          }}
+        >
+          <Breadcrumb
+            items={[
+              {
+                title: 'Home',
+              },
+              {
+                title: 'List',
+              },
+              {
+                title: 'App',
+              },
+            ]}
+            style={{
+              margin: '16px 0',
+            }}
+          />
+          <Content
+            style={{
+              padding: 24,
+              margin: 0,
+              minHeight: 280,
+              background: 'black',
+              borderRadius: '8px',
+            }}
+          >
+            Content
+          </Content>
+        </Layout>
+      </Layout>
+    </Layout>
   )
 }
-
-export const Users = withPageAuthRequired(_Users, { returnTo: './error' });
