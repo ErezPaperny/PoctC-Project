@@ -81,12 +81,18 @@ app.get('/categories', async (req, res) => {
 
 app.get('/users', async (req, res) => {
   try {
-    const { filter = '', page = '1', limit = '10' } = req.query
+    const {
+      name = '',
+      type = '',
+      active = false,
+      page = '1',
+      limit = '10',
+    } = req.query
 
     const pageNumber = parseInt(`${page}`, 10)
     const limitNumber = parseInt(`${limit}`, 10)
 
-    const query = { name: { $regex: filter, $options: 'i' } }
+    const query = { name: { $regex: name, $options: 'i' } }
     const users = await Users.find(query)
       .sort({ name: 1 })
       .skip((pageNumber - 1) * limitNumber)

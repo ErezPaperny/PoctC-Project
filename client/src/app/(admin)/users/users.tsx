@@ -2,8 +2,11 @@ import { Divider, Layout, Menu } from 'antd'
 import { AppHeader } from '@/components/appHeader'
 import { PageHeader } from '@/components/pageHeader'
 import { UsersFilter } from './usersFilter'
+import { UsersList } from './usersList'
+import { useState } from 'react'
 
 export const Users = () => {
+  const [filter, setFilter] = useState({ name: '', type: '', active: true })
   const { Content, Sider } = Layout
 
   return (
@@ -49,10 +52,9 @@ export const Users = () => {
               borderRadius: '8px',
             }}
           >
-            <UsersFilter
-              callback={(formOutput) => console.log({ formOutput })}
-            />
-            <Divider />
+            <UsersFilter callback={(filter) => setFilter(filter)} />
+            <Divider style={{marginBottom: 0}} />
+            <UsersList filter={filter}/>
           </Content>
         </Layout>
       </Layout>

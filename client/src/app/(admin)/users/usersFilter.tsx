@@ -72,7 +72,7 @@ export const UsersFilter = ({
         </Col>
         <Col span={4} key={3}>
           <Form.Item
-            label="Active"
+            label="Active Only"
             name="active"
             valuePropName="checked"
             style={{ marginBottom: 0 }}
