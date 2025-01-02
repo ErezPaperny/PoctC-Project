@@ -20,7 +20,7 @@ export const UsersList: React.FC<{
   const [accessToken, setAccessToken] = useState()
   const [editModeKey, setEditModeKey] = useState<string | undefined>()
   const [data, setData] = useState()
-  const [pageSize, setPageSize] = useState(8)
+  const [pageSize, setPageSize] = useState(10)
   const [form] = Form.useForm()
   const { Option } = Select
 
@@ -146,14 +146,14 @@ export const UsersList: React.FC<{
             name: string
             type?: string
             moreDetails?: string
-            active?: boolean
+            active?: string
           }) => {
             return {
               key: item._id,
               name: item.name,
               type: item.type || 'Admin',
               moreDetails: item.moreDetails || '',
-              active: item.active || true,
+              active: item.active,
             }
           }
         )

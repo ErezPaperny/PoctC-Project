@@ -92,7 +92,15 @@ app.get('/users', async (req, res) => {
     const pageNumber = parseInt(`${page}`, 10)
     const limitNumber = parseInt(`${limit}`, 10)
 
-    const query = { name: { $regex: name, $options: 'i' } }
+    const query = {
+      name: { $regex: name, $options: 'i' },
+      type: { $regex: type, $options: 'i' },
+    } as any
+
+    if (active === 'true') {
+      query.active = true
+    }
+
     const users = await Users.find(query)
       .sort({ name: 1 })
       .skip((pageNumber - 1) * limitNumber)
