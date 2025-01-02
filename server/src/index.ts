@@ -1,14 +1,20 @@
 import express, { Request, Response } from 'express'
 import { requiredScopes, auth } from 'express-oauth2-jwt-bearer'
 require('dotenv').config()
-import { Categories, Users } from './dbConnection'
+import { Categories } from './dbConnection'
+import { getUsers, patchUser } from './users'
 
 const app = express()
 const PORT = process.env.PORT
 
+app.use(express.json())
+
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', process.env.CROSS_ORIGIN)
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET, PATCH, POST, PUT, DELETE, OPTIONS'
+  )
   res.header(
     'Access-Control-Allow-Headers',
     'Content-Type, Authorization, Scope'
@@ -79,45 +85,9 @@ app.get('/categories', async (req, res) => {
   }
 })
 
-app.get('/users', async (req, res) => {
-  try {
-    const {
-      name = '',
-      type = '',
-      active = false,
-      page = '1',
-      limit = '10',
-    } = req.query
-
-    const pageNumber = parseInt(`${page}`, 10)
-    const limitNumber = parseInt(`${limit}`, 10)
-
-    const query = {
-      name: { $regex: name, $options: 'i' },
-      type: { $regex: type, $options: 'i' },
-    } as any
-
-    if (active === 'true') {
-      query.active = true
-    }
-
-    const users = await Users.find(query)
-      .sort({ name: 1 })
-      .skip((pageNumber - 1) * limitNumber)
-      .limit(limitNumber)
-    const total = await Users.countDocuments({})
-
-    res.json({
-      total,
-      page: pageNumber,
-      limit: limitNumber,
-      data: users,
-    })
-  } catch (err) {
-    console.error('Error fetching users:', err)
-    res.status(500).json({ error: (err as any).message })
-  }
-})
+app.get('/users', getUsers)
+// @ts-ignore
+app.patch('/user/:id', patchUser)
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`)

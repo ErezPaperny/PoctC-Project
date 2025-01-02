@@ -5,9 +5,9 @@ const MONGO_URI = `mongodb://${process.env.MONGO_SERVER}:${process.env.MONGO_POR
 
 if (mongoose.connection.readyState === 0) {
   mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch((err: any) => console.error('MongoDB connection error BLA BLA:', err))
+    .connect(MONGO_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch((err: any) => console.error('MongoDB connection error:', err))
 }
 
 import { Categories } from './models/Categories'

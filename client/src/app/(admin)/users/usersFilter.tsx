@@ -1,16 +1,16 @@
-import { Button, Checkbox, Col, Form, Input, Row, Select, Space } from 'antd'
+import { UserTypeSelectionFormItem } from '@/components/userType'
+import { Button, Checkbox, Col, Form, Input, Row, Space } from 'antd'
 
 export const UsersFilter = ({
   callback,
 }: Readonly<{
   callback: (formOutput: {
-    name: string
-    type: string
+    userName: string
+    userType: string
     active: boolean
   }) => void
 }>) => {
   const [form] = Form.useForm()
-  const { Option } = Select
 
   const formStyle: React.CSSProperties = {
     maxWidth: 'none',
@@ -19,15 +19,15 @@ export const UsersFilter = ({
   }
 
   const handleCallback = ({
-    name = '',
-    type = '',
+    userName = '',
+    userType = '',
     active = true,
   }: {
-    name: string
-    type: string
+    userName: string
+    userType: string
     active?: boolean
   }) => {
-    callback({ name, type, active })
+    callback({ userName, userType, active })
   }
 
   return (
@@ -39,36 +39,12 @@ export const UsersFilter = ({
     >
       <Row gutter={25}>
         <Col span={6} key={1}>
-          <Form.Item
-            name="name"
-            label="Name"
-            rules={[
-              {
-                required: false,
-              },
-            ]}
-            style={{ marginBottom: 0 }}
-          >
+          <Form.Item name="userName" label="Name" style={{ marginBottom: 0 }}>
             <Input placeholder="User name" />
           </Form.Item>
         </Col>
         <Col span={6} key={2}>
-          <Form.Item
-            name="type"
-            label="Type"
-            rules={[
-              {
-                required: false,
-              },
-            ]}
-            style={{ marginBottom: 0 }}
-          >
-            <Select>
-              <Option value="admin">Admin</Option>
-              <Option value="employee">Employee</Option>
-              <Option value="buyer">Buyer</Option>
-            </Select>
-          </Form.Item>
+          <UserTypeSelectionFormItem label="Type" />
         </Col>
         <Col span={4} key={3}>
           <Form.Item

@@ -6,7 +6,11 @@ import { UsersList } from './usersList'
 import { useState } from 'react'
 
 export const Users = () => {
-  const [filter, setFilter] = useState({ name: '', type: '', active: true })
+  const [filter, setFilter] = useState({
+    userName: '',
+    userType: '',
+    active: true,
+  })
   const { Content, Sider } = Layout
 
   return (
@@ -53,8 +57,8 @@ export const Users = () => {
             }}
           >
             <UsersFilter callback={(filter) => setFilter(filter)} />
-            <Divider style={{marginBottom: 0}} />
-            <UsersList filter={filter}/>
+            <Divider style={{ marginBottom: 0 }} />
+            <UsersList filter={filter} />
           </Content>
         </Layout>
       </Layout>
